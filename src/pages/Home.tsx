@@ -315,7 +315,6 @@ const Home = () => {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-slate-900 rounded-[56px] p-12 md:p-20 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-500/5 -z-0" />
             
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
