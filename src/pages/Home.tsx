@@ -312,52 +312,52 @@ const Home = () => {
 
       {/* Final Call to Action */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-slate-900 rounded-[56px] p-12 md:p-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="bg-slate-900 rounded-[32px] sm:rounded-[56px] p-8 sm:p-12 md:p-20 relative overflow-hidden">
             
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
               <div>
-                <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-6">Final Call to Action</h2>
-                <h3 className="text-2xl sm:text-4xl md:text-6xl font-serif font-medium text-white mb-8 leading-tight">
+                <h2 className="text-xs sm:text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-4 sm:mb-6">Final Call to Action</h2>
+                <h3 className="text-2xl sm:text-4xl md:text-6xl font-serif font-medium text-white mb-6 sm:mb-8 leading-tight">
                   Secure Your Financial <br /> <span className="italic text-emerald-400">Integrity Today.</span>
                 </h3>
-                <p className="text-slate-400 text-lg mb-10 max-w-md leading-relaxed">
+                <p className="text-slate-400 text-base sm:text-lg mb-8 sm:mb-10 max-w-md leading-relaxed">
                   Don't wait for a notice to seek expert advice. Let's build a robust financial foundation for your business.
                 </p>
-                <Link to="/consultation" className="inline-flex items-center space-x-4 bg-white text-slate-900 px-10 py-5 rounded-full font-bold hover:bg-emerald-400 hover:text-slate-900 transition-all shadow-xl shadow-white/10">
+                <Link to="/consultation" className="inline-flex items-center space-x-3 bg-white text-slate-900 px-7 sm:px-10 py-4 sm:py-5 rounded-full font-bold hover:bg-emerald-400 hover:text-slate-900 transition-all shadow-xl shadow-white/10 text-sm sm:text-base">
                   <span>Get Started Now</span>
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 gap-8">
-                <div className="flex items-start space-x-6 p-6 rounded-3xl bg-white/5 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <FileText className="text-emerald-400" size={24} />
+              <div className="grid grid-cols-1 gap-4 sm:gap-8">
+                <div className="flex items-center space-x-4 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 overflow-hidden">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <FileText className="text-emerald-400" size={20} />
                   </div>
-                  <div>
-                    <div className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-1">Email</div>
-                    <div className="text-xl font-medium text-white">office@cashailendra.com</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-6 p-6 rounded-3xl bg-white/5 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <Users className="text-emerald-400" size={24} />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-1">Phone</div>
-                    <div className="text-xl font-medium text-white">+91 9314412945</div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-0.5">Email</div>
+                    <div className="text-sm sm:text-lg font-medium text-white break-all">office@cashailendra.com</div>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-6 p-6 rounded-3xl bg-white/5 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <Eye className="text-emerald-400" size={24} />
+                <div className="flex items-center space-x-4 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <Users className="text-emerald-400" size={20} />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-1">Office</div>
-                    <div className="text-xl font-medium text-white leading-snug">8th Floor, Manglam Signature Tower,<br />DC 2, Tonk Road, Lalkothi,<br />Jaipur, Rajasthan 302015</div>
+                    <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-0.5">Phone</div>
+                    <div className="text-sm sm:text-lg font-medium text-white whitespace-nowrap">+91 9314412945</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <Eye className="text-emerald-400" size={20} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-0.5">Office</div>
+                    <div className="text-sm sm:text-base font-medium text-white leading-snug">8th Floor, Manglam Signature Tower,<br />DC 2, Tonk Road, Lalkothi,<br />Jaipur, Rajasthan 302015</div>
                   </div>
                 </div>
               </div>
