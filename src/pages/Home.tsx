@@ -143,27 +143,25 @@ const Home = () => {
                 {
                   title: "Taxation & Compliance",
                   desc: "Navigate the complexities of GST, Income Tax, and International Taxation with strategic planning designed to optimize your liabilities legally and efficiently.",
-                  icon: <FileText className="w-6 h-6" />,
-                  color: "bg-blue-50 text-blue-600"
+                  icon: <img src="/icon_taxation.png" alt="Taxation" className="w-12 h-12 object-contain" />,
+                  link: false
                 },
                 {
                   title: "Audit & Assurance",
                   desc: "Beyond mere compliance—we provide a rigorous examination of your financial health, ensuring transparency and building stakeholder trust.",
-                  icon: <ShieldCheck className="w-6 h-6" />,
-                  color: "bg-emerald-50 text-emerald-600"
+                  icon: <img src="/icon_audit.png" alt="Audit" className="w-12 h-12 object-contain" />,
+                  link: false
                 },
                 {
                   title: "Corporate Advisory",
                   desc: "Expert guidance for the modern enterprise: from company formation and ROC filings to complex financial restructuring and M&A support.",
-                  icon: <Briefcase className="w-6 h-6" />,
-                  color: "bg-purple-50 text-purple-600",
+                  icon: <img src="/icon_corporate.png" alt="Corporate" className="w-12 h-12 object-contain" />,
                   link: true
                 },
                 {
                   title: "Business Consulting",
                   desc: "Actionable insights for startups and established firms. We help you manage cash flows, project reports, and internal controls for sustainable scaling.",
-                  icon: <Users className="w-6 h-6" />,
-                  color: "bg-orange-50 text-orange-600",
+                  icon: <Users className="w-8 h-8 text-slate-600" />,
                   link: true
                 }
               ].map((service, idx) => (
@@ -175,7 +173,7 @@ const Home = () => {
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
                   className="p-8 rounded-[32px] border border-slate-100 bg-slate-50/30 hover:bg-white hover:shadow-xl transition-all duration-500 flex flex-col h-full"
                 >
-                  <div className={`w-14 h-14 ${service.color} rounded-2xl flex items-center justify-center mb-6`}>
+                  <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-slate-100">
                     {service.icon}
                   </div>
                   <h4 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h4>
