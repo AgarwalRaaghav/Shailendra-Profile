@@ -359,7 +359,7 @@ const Home = () => {
                   </div>
                   <div>
                     <div className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-1">Office</div>
-                    <div className="text-xl font-medium text-white">Jaipur, Rajasthan, India</div>
+                    <div className="text-xl font-medium text-white leading-snug">8th Floor, Manglam Signature Tower,<br />DC 2, Tonk Road, Lalkothi,<br />Jaipur, Rajasthan 302015</div>
                   </div>
                 </div>
               </div>
