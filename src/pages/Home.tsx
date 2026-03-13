@@ -96,14 +96,12 @@ const Hero = () => {
                 <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                 <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">Accepting New Consultations</span>
               </div>
-            </div>
 
-            {/* Signature */}
-            <div className="mt-6 flex justify-center">
+              {/* Signature — diagonal overlay on portrait */}
               <img
                 src="/signature.png"
                 alt="Shailendra Agarwal Signature"
-                className="w-48 opacity-80"
+                className="absolute bottom-6 right-4 w-44 z-20 rotate-[-12deg] opacity-90 pointer-events-none"
               />
             </div>
           </motion.div>
