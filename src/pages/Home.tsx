@@ -97,6 +97,15 @@ const Hero = () => {
                 <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">Accepting New Consultations</span>
               </div>
             </div>
+
+            {/* Signature */}
+            <div className="mt-6 flex justify-center">
+              <img
+                src="/signature.png"
+                alt="Shailendra Agarwal Signature"
+                className="w-48 opacity-80"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
