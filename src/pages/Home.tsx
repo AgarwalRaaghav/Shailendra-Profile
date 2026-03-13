@@ -97,12 +97,6 @@ const Hero = () => {
                 <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">Accepting New Consultations</span>
               </div>
 
-              {/* Signature — diagonal overlay on portrait */}
-              <img
-                src="/signature.png"
-                alt="Shailendra Agarwal Signature"
-                className="absolute bottom-6 right-4 w-44 z-20 rotate-[-12deg] opacity-90 pointer-events-none"
-              />
             </div>
           </motion.div>
         </div>
