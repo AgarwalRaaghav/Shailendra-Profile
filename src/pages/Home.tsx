@@ -386,7 +386,7 @@ const NewspaperCuttings = () => {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-200/60 group">
             <iframe
-              src="https://www.youtube.com/embed/3XBPwrT_Vng"
+              src="https://www.youtube.com/embed/3XBPwrT_Vng?start=43"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
