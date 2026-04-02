@@ -54,7 +54,7 @@ const Footer = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="w-full text-center overflow-hidden"
           >
-            <h1 className="text-[12vw] sm:text-[14vw] font-serif font-bold text-slate-800 tracking-tighter leading-none select-none">
+            <h1 className="text-[9.5vw] sm:text-[8.5vw] font-serif font-bold text-slate-800 tracking-tighter leading-none select-none max-w-full truncate">
               SHAILENDRA
             </h1>
           </motion.div>
