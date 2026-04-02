@@ -553,58 +553,118 @@ const Home = () => {
             >
               "
             </motion.div>
-            <p className="relative z-10 text-xl md:text-2xl font-serif italic text-slate-800 leading-relaxed pt-6 flex flex-wrap gap-x-2 gap-y-1">
-              {"Widely known for his practical, no-nonsense advisory style, he brings clarity at the intersection of numbers, law, and business decisions. He is regarded as a promoter-side advisor who understands deal dynamics and focuses on solutions, not paperwork.".split(" ").map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0.2 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.03, ease: "easeOut" }}
-                  className="inline-block"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </p>
-            <div className="relative z-10 mt-10 flex items-center space-x-4">
-              <div className="h-px w-12 bg-emerald-500" />
-              <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">Approach & Philosophy</span>
+            <div className="relative z-10 pt-6">
+              <h4 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-wider">Approach & Philosophy</h4>
+              <ul className="space-y-4">
+                {[
+                  { title: "Clarity", desc: "Simplifying complex laws into practical solutions" },
+                  { title: "Compliance with Strategy", desc: "Not just following the law, but using it effectively" },
+                  { title: "Client-Centric Execution", desc: "Solutions aligned with business realities" }
+                ].map((item, i) => (
+                  <motion.li 
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-start space-x-3"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 shrink-0" />
+                    <p className="text-slate-700 leading-relaxed font-serif italic">
+                      <span className="font-bold text-slate-900 not-italic">{item.title}:</span> {item.desc}
+                    </p>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           </div>
         </motion.section>
 
-        {/* Core Practice Areas */}
+        {/* Professional Expertise */}
         <section className="mb-24">
           <SectionHeader 
-            badge="Core Practice Areas" 
-            title="Surgical Precision in Professional Services" 
+            badge="Professional Expertise" 
+            title="Having Rich Experience Of" 
           />
-          <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { title: "Real Estate Consultancy & RERA Advisory", icon: <Building2 className="text-emerald-600" /> },
-              { title: "Regulatory Advisory for Promoters, Developers & Growth-Stage Businesses", icon: <Scale className="text-emerald-600" /> },
-              { title: "Conceptualisation of Real Estate Projects", icon: <Microscope className="text-emerald-600" />, subtitle: "Based on market analytics and past-trend analysis" },
-              { title: "Strategic Business Advisory", icon: <TrendingUp className="text-emerald-600" /> },
-              { title: "Business Structuring & Transaction Advisory", icon: <FileText className="text-emerald-600" /> }
-            ].map((area, idx) => (
-              <PracticeCard key={idx} area={area} />
+              { 
+                category: "Taxation & Structuring", 
+                items: [
+                  "Income Tax Planning and Structuring",
+                  "Capital Gains Taxation",
+                  "Tax-efficient business structuring",
+                  "Handling Income Tax Assessments",
+                  "Representation before CIT(A), ITAT, and other authorities",
+                  "Strategic tax dispute resolution"
+                ],
+                icon: <Scale className="text-emerald-600" />
+              },
+              { 
+                category: "Audits & Assurance", 
+                items: [
+                  "Statutory Audits of PSU Banks (including BOB, IDBI, PNB)",
+                  "Tax Audits of Companies and Non-Corporate Assessees",
+                  "Management, Operational, Revenue, and Stock Audits"
+                ],
+                icon: <ShieldCheck className="text-emerald-600" />
+              }
+            ].map((section, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.2 }}
+                className="p-8 rounded-[32px] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500"
+              >
+                <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
+                  {section.icon}
+                </div>
+                <h4 className="text-xl font-bold text-slate-900 mb-6 uppercase tracking-wider">{section.category}</h4>
+                <ul className="space-y-4">
+                  {section.items.map((item, i) => (
+                    <li key={i} className="flex items-start space-x-3 text-slate-600 group">
+                      <CheckCircle2 size={18} className="text-emerald-500 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Real Estate Expertise */}
+        {/* Specialized Expertise: Real Estate & RERA */}
         <section className="mb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[40px] md:rounded-[56px] p-8 md:p-20 text-white relative overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-slate-700/50">
           <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px] animate-blob" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] animate-blob" style={{ animationDelay: '3s' }} />
-          <div className="relative z-10 max-w-3xl">
-            <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-6">Expertise Focus</h2>
-            <h3 className="text-3xl md:text-4xl font-serif mb-8 leading-tight">
-              Chartered Accountancy
+          <div className="relative z-10">
+            <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-6">Specialized Expertise</h2>
+            <h3 className="text-3xl md:text-5xl font-serif mb-8 leading-tight">
+              Real Estate & RERA Advisory
             </h3>
-            <p className="text-slate-400 text-lg leading-relaxed mb-8">
-              CA. Shailendra Agarwal actively advises developers and landowners on project structuring, feasibility, RERA compliance, and risk mitigation, assisting in the conceptualisation of upcoming projects backed by historical market data and regulatory foresight.
+            <p className="text-slate-300 text-lg leading-relaxed mb-10 max-w-3xl">
+              Leveraging his strong foundation in taxation and regulatory frameworks, CA. Agarwal has developed a focused practice in Real Estate Advisory and RERA compliance. He advises developers, investors, and stakeholders on:
             </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-12">
+              {[
+                "Project structuring and registration under RERA",
+                "Regulatory compliance and documentation",
+                "Litigation and dispute resolution",
+                "Risk assessment and transaction structuring"
+              ].map((point, i) => (
+                <div key={i} className="flex items-center space-x-4 group">
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 group-hover:scale-150 transition-transform" />
+                  <span className="text-slate-200 font-medium">{point}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-emerald-400 italic font-serif text-xl border-l-2 border-emerald-500/30 pl-6 mb-12">
+              "His approach combines regulatory foresight with practical execution, ensuring smooth project operations and long-term compliance."
+            </p>
+
             <div className="flex items-center space-x-12">
                <div className="flex flex-col">
                  <span className="text-4xl font-serif text-white"><KineticCounter to={18} />+</span>
@@ -614,6 +674,36 @@ const Home = () => {
                  <span className="text-4xl font-serif text-white"><KineticCounter to={1200} />+</span>
                  <span className="text-xs text-emerald-400 uppercase tracking-widest font-bold">Clients Served</span>
                </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Thought Leadership */}
+        <section className="mb-24">
+          <SectionHeader 
+            badge="Insights" 
+            title="Thought Leadership" 
+          />
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-lg text-slate-600 mb-12 leading-relaxed">
+              CA. Agarwal is a regular speaker at professional conferences and seminars, known for simplifying complex tax and regulatory concepts into actionable strategies for businesses and professionals.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-left">
+              {[
+                { title: "Income Tax Planning", icon: <FileText className="text-emerald-600" /> },
+                { title: "Capital Gains Taxation", icon: <TrendingUp className="text-emerald-600" /> }
+              ].map((topic, i) => (
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -5 }}
+                  className="p-8 rounded-[28px] bg-emerald-50/30 border border-emerald-100 flex items-center space-x-6"
+                >
+                  <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+                    {topic.icon}
+                  </div>
+                  <span className="text-xl font-bold text-slate-900">{topic.title}</span>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -661,6 +751,26 @@ const Home = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+        {/* Engage With Us */}
+        <section className="mb-24 pt-16">
+          <div className="bg-slate-900 rounded-[48px] p-12 md:p-20 text-center relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-[0.3em] mb-6">Connect</h2>
+            <h3 className="text-3xl md:text-5xl font-serif text-white mb-8">Engage With Us</h3>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-12">
+              Whether you are a business owner, developer, investor, or corporate, Mr. Agarwal provides end-to-end advisory support to help you navigate taxation and regulatory challenges with confidence.
+            </p>
+            <MagneticButton className="inline-block">
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full font-bold text-lg shadow-xl shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="ml-3" size={20} />
+              </Link>
+            </MagneticButton>
           </div>
         </section>
       </div>
