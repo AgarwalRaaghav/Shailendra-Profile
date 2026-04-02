@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
+import { SectionHeader } from '../components/AnimatedComponents';
 
 const ConsultationPage = () => {
   useEffect(() => {
@@ -25,21 +26,18 @@ const ConsultationPage = () => {
       className="pt-32 pb-24 bg-white min-h-screen"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-[0.2em] mb-4">Book a Session</h2>
-          <h1 className="text-5xl md:text-6xl font-serif font-medium text-slate-900 mb-6">
-            Private <span className="italic text-emerald-600">Consultation</span>
-          </h1>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Schedule a 30-minute strategic financial review. Select a time that works best for you to discuss your tax, audit, or advisory needs.
-          </p>
-        </div>
+        <SectionHeader 
+          badge="Book a Session" 
+          title={<>Private <span className="italic text-emerald-600">Consultation</span></>} 
+          subtitle="Schedule a 30-minute strategic financial review. Select a time that works best for you to discuss your tax, audit, or advisory needs."
+          centered={true}
+        />
 
         {/* Calendly Inline Widget */}
         <div className="bg-slate-50 rounded-[48px] p-4 md:p-8 shadow-inner border border-slate-100 overflow-hidden min-h-[750px] relative">
           <div 
             className="calendly-inline-widget" 
-            data-url="https://calendly.com/raaghav092/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+            data-url="https://calendly.com/shailendra-ca-agarwal/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1" 
             style={{ minWidth: '320px', height: '700px' }}
           />
         </div>

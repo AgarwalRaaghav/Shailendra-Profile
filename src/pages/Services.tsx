@@ -10,6 +10,7 @@ import {
   Users
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SectionHeader, DrawIcon } from '../components/AnimatedComponents';
 
 const ServicesPage = () => {
   const services = [
@@ -73,18 +74,15 @@ const ServicesPage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="pt-32 pb-24"
+      className="pt-24 lg:pt-32 pb-20 lg:pb-24"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-3xl mb-20">
-          <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-[0.2em] mb-4">Our Services</h2>
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-medium text-slate-900 mb-8 leading-tight">
-            Expertise that scales with <span className="italic text-emerald-600">your ambitions.</span>
-          </h1>
-          <p className="text-slate-500 text-xl leading-relaxed">
-            We provide a comprehensive suite of financial and advisory services designed to navigate the complexities of modern business. Our approach combines traditional integrity with modern strategic insights.
-          </p>
-        </div>
+        <SectionHeader 
+          badge="Our Services" 
+          title={<>Expertise that scales with <span className="italic text-emerald-600">your ambitions.</span></>} 
+          subtitle="We provide a comprehensive suite of financial and advisory services designed to navigate the complexities of modern business. Our approach combines traditional integrity with modern strategic insights."
+          centered={false}
+        />
 
         <div className="space-y-12">
           {services.map((service, idx) => (
@@ -94,12 +92,12 @@ const ServicesPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group p-8 md:p-12 rounded-[48px] border border-slate-100 bg-white hover:shadow-2xl transition-all duration-500"
+              className="group p-8 md:p-12 rounded-[48px] border border-slate-100 bg-white hover:shadow-2xl hover:border-emerald-200 active:scale-[0.98] cursor-pointer transition-all duration-500"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-1">
                    <div className={`w-20 h-20 ${service.color} rounded-[24px] flex items-center justify-center shrink-0`}>
-                    {service.icon}
+                    <DrawIcon>{service.icon}</DrawIcon>
                   </div>
                 </div>
                 <div className="lg:col-span-7">
@@ -122,7 +120,7 @@ const ServicesPage = () => {
                 <div className="lg:col-span-4 flex justify-end lg:justify-center">
                   <Link 
                     to="/contact" 
-                    className="inline-flex items-center space-x-3 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-emerald-600 transition-colors group"
+                    className="inline-flex justify-center items-center space-x-3 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-emerald-600 transition-colors group w-full lg:w-auto"
                   >
                     <span>Inquire Now</span>
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Phone, Mail, MessageCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { SectionHeader } from '../components/AnimatedComponents';
 
 const ContactPage = () => {
+  // 1. GOTO https://formspree.io and create a free account
+  // 2. Create a "New Form" and copy the ID from the endpoint
+  // 3. Paste your ID here:
+  const FORMSPREE_ID = 'xeerwnjo'; 
+
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [formState, setFormState] = useState({
     name: '',
@@ -17,15 +23,23 @@ const ContactPage = () => {
     e.preventDefault();
     setStatus('submitting');
     
+    // Create an abort controller for the timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
     try {
-      const response = await fetch('https://formspree.io/f/xojkwwoj', {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(formState)
+        body: JSON.stringify(formState),
+        signal: controller.signal
       });
       
+      clearTimeout(timeoutId);
+
       if (response.ok) {
         setStatus('success');
         setFormState({
@@ -40,7 +54,9 @@ const ContactPage = () => {
         setStatus('error');
       }
     } catch (error) {
+      clearTimeout(timeoutId);
       setStatus('error');
+      console.error('Form submission error:', error);
     }
   };
 
@@ -57,18 +73,19 @@ const ContactPage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="pt-32 pb-24 bg-white min-h-screen"
+      className="pt-24 lg:pt-32 pb-20 bg-white min-h-screen relative overflow-hidden"
     >
+      {/* Background Accents */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-50/20 -z-10 rounded-l-[100px] blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-full bg-slate-50/40 -z-10 rounded-r-[100px] blur-3xl" />
+      
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-[0.2em] mb-4">Contact Us</h2>
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-medium text-slate-900 mb-6">
-            Let’s Strategize Your <span className="italic">Financial</span> Growth.
-          </h1>
-          <p className="text-slate-500 text-lg max-w-xl">
-            Whether you have a tax query or need a comprehensive audit, we are here to provide expert guidance.
-          </p>
-        </div>
+        <SectionHeader 
+          badge="Contact Us" 
+          title={<>Let’s Strategize Your <span className="italic text-emerald-600">Financial</span> Growth.</>} 
+          subtitle="Whether you have a tax query or need a comprehensive audit, we are here to provide expert guidance."
+          centered={false}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
           {/* Form Section */}
@@ -107,7 +124,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         type="text" 
                         required 
-                        className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
                         placeholder="John Doe" 
                       />
                     </div>
@@ -119,7 +136,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         type="text" 
                         required 
-                        className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
                         placeholder="ABC Corp Pvt Ltd" 
                       />
                     </div>
@@ -134,7 +151,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         type="email" 
                         required 
-                        className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
                         placeholder="john@example.com" 
                       />
                     </div>
@@ -146,7 +163,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         type="tel" 
                         required 
-                        className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors" 
                         placeholder="+91 9314412945" 
                       />
                     </div>
@@ -159,7 +176,7 @@ const ContactPage = () => {
                       value={formState.category}
                       onChange={handleChange}
                       required 
-                      className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-900 focus:border-emerald-500 outline-none transition-colors cursor-pointer appearance-none"
+                      className="w-full px-0 py-3 bg-transparent border-b border-slate-200 text-slate-900 focus:border-emerald-500 outline-none transition-colors cursor-pointer appearance-none"
                     >
                       <option value="" disabled>Select a category...</option>
                       <option value="Income Tax / ITR">Income Tax / ITR</option>
@@ -178,7 +195,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       rows={4} 
                       required 
-                      className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors resize-none" 
+                      className="w-full px-0 py-3 bg-transparent border-b border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 outline-none transition-colors resize-none" 
                       placeholder="Brief description of the requirement..." 
                     />
                   </div>
@@ -269,18 +286,16 @@ const ContactPage = () => {
                 Our doors are always open for a cup of tea and a discussion about your financial future. Please book an appointment in advance to ensure we can dedicate the necessary time to your consultation.
               </p>
               
-              {/* Google Maps Embed */}
-              <div className="w-full h-48 rounded-[24px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 bg-slate-100 shadow-inner">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.33230872688!2d75.723762!3d26.8851417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1709214343132!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+              {/* Google Maps Button */}
+              <a 
+                href="https://maps.app.goo.gl/Mc8FgTCnGHFdRYL87?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white px-8 py-5 rounded-2xl flex items-center justify-center space-x-3 transition-colors font-bold shadow-sm border border-emerald-100/50"
+              >
+                <MapPin size={20} />
+                <span>Open in Google Maps</span>
+              </a>
             </div>
           </div>
         </div>

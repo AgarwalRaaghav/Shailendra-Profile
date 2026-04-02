@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 20);
+  });
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -21,11 +21,15 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <motion.nav 
+      initial={{ y: 0 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md py-3 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-slate-100/50' : 'bg-white/50 backdrop-blur-sm py-5'}`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         <Link 
           to="/"
-          className="text-lg sm:text-2xl font-serif font-bold tracking-tight text-slate-900 cursor-pointer"
+          className="text-base sm:text-2xl font-serif font-bold tracking-tight text-slate-900 cursor-pointer shrink-0"
         >
           CA. Shailendra Agarwal
         </Link>
@@ -51,11 +55,20 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-slate-900" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Header Actions */}
+        <div className="flex items-center space-x-4 md:hidden">
+          <Link 
+            to="/" 
+            className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-900 border border-slate-200 px-4 py-1.5 rounded-full active:scale-95 transition-all hover:bg-slate-50"
+          >
+            Home
+          </Link>
+          <button className="text-slate-900 p-1" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
+
 
       {/* Mobile Nav */}
       <AnimatePresence>
@@ -64,10 +77,11 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-0 top-0 left-0 right-0 bottom-0 bg-white z-[60] flex flex-col pt-32 px-10 md:hidden"
+            transition={{ type: "spring", bounce: 0, duration: 0.6 }}
+            className="fixed inset-0 top-0 left-0 right-0 bottom-0 mesh-bg backdrop-blur-3xl z-[60] flex flex-col pt-32 px-10 md:hidden"
           >
             <button 
-              className="absolute top-8 right-6 text-slate-900" 
+              className="absolute top-8 right-6 p-2 bg-slate-50 border border-slate-100 shadow-sm rounded-full text-slate-900 active:scale-90 transition-transform" 
               onClick={() => setIsOpen(false)}
             >
               <X size={32} />
@@ -77,14 +91,14 @@ const Navbar = () => {
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, type: "spring", stiffness: 200, damping: 20 }}
                 >
                   <NavLink 
                     to={link.href} 
                     className={({ isActive }) => 
-                      `text-4xl font-serif font-medium ${isActive ? 'text-emerald-600' : 'text-slate-900'}`
+                      `text-4xl sm:text-5xl font-serif font-medium block w-full outline-none focus-visible:outline-none transition-transform active:scale-95 origin-left ${isActive ? 'text-emerald-600' : 'text-slate-900'}`
                     }
                     onClick={() => setIsOpen(false)}
                   >
@@ -117,7 +131,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
