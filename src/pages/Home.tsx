@@ -131,15 +131,15 @@ const KineticCounter = ({ from = 0, to, duration = 2.5 }: { from?: number, to: n
     const node = nodeRef.current;
     if (node) {
       const controls = animate(from, to, {
-        duration,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 1.5,
+        ease: "easeOut",
         onUpdate(value) {
           node.textContent = Math.round(value).toString();
         }
       });
       return () => controls.stop();
     }
-  }, [from, to, duration, inView]);
+  }, [from, to, inView]);
 
   return (
     <motion.span 
@@ -209,15 +209,12 @@ const Hero = () => {
   return (
     <section className="relative pt-28 pb-16 lg:pt-42 lg:pb-36 overflow-hidden">
       {/* Background Accents (Desktop) */}
-      <motion.div style={{ y: yBg }} className="absolute inset-0 bg-grid-pattern [mask-image:linear-gradient(to_bottom,white,transparent)] -z-20 opacity-70 hidden md:block" />
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-50/30 -z-10 rounded-l-[100px] hidden md:block" />
-      <div className="absolute top-0 -left-32 w-[500px] h-[500px] bg-emerald-300/30 rounded-full blur-[100px] -z-10 animate-blob mix-blend-multiply hidden lg:block" />
-      <div className="absolute top-40 right-10 w-[400px] h-[400px] bg-teal-200/30 rounded-full blur-[100px] -z-10 animate-blob mix-blend-multiply hidden lg:block" style={{ animationDelay: '2s' }} />
+      <div className="absolute inset-0 bg-grid-pattern [mask-image:linear-gradient(to_bottom,white,transparent)] -z-20 opacity-70 hidden md:block" />
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-50/10 -z-10 rounded-l-[100px] hidden md:block" />
 
       {/* Intensive Background Accents (Mobile) */}
-      <motion.div style={{ y: yBg }} className="absolute inset-0 bg-grid-pattern [mask-image:linear-gradient(to_bottom,white,transparent)] -z-20 opacity-40 md:hidden" />
-      <div className="absolute top-10 -left-10 w-[250px] h-[250px] bg-emerald-400/50 rounded-full blur-[60px] -z-10 animate-blob mix-blend-multiply lg:hidden" />
-      <div className="absolute top-60 -right-10 w-[200px] h-[200px] bg-teal-400/40 rounded-full blur-[50px] -z-10 animate-blob mix-blend-multiply lg:hidden" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute inset-0 bg-grid-pattern [mask-image:linear-gradient(to_bottom,white,transparent)] -z-20 opacity-40 md:hidden" />
+
 
       <div className="max-w-7xl mx-auto px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
@@ -434,18 +431,11 @@ const NewspaperCuttings = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative cursor-pointer hover:-translate-y-3 hover:rotate-1 hover:z-10 transition-all duration-500 will-change-transform"
+              className="group relative cursor-pointer hover:-translate-y-2 hover:z-10 transition-all duration-500 will-change-transform"
               onClick={() => setSelectedImage(src)}
             >
-              {/* Paper Shadow Effect */}
               <div 
-                className="absolute inset-2 bg-black/10 blur-md -z-10 transition-transform group-hover:scale-105"
-                style={{ clipPath: jaggedPaths[idx % jaggedPaths.length] }}
-              />
-              
-              <div 
-                className="bg-white p-2 shadow-sm transition-all duration-500 overflow-hidden"
-                style={{ clipPath: jaggedPaths[idx % jaggedPaths.length] }}
+                className="bg-white p-2 rounded-2xl shadow-md border border-slate-100 overflow-hidden"
               >
                 <div className="w-full h-40 sm:h-64 md:h-[40vh] max-h-[350px] transition-all duration-700 group-hover:scale-105 bg-white flex items-center justify-center">
                   <img 
@@ -457,12 +447,6 @@ const NewspaperCuttings = () => {
                   />
                 </div>
               </div>
-              
-              {/* Torn Edge Border Accent */}
-              <div 
-                className="absolute inset-0 border-[1px] border-slate-200/50 pointer-events-none"
-                style={{ clipPath: jaggedPaths[idx % jaggedPaths.length] }}
-              />
             </motion.div>
           ))}
         </div>
@@ -635,9 +619,7 @@ const Home = () => {
         </section>
 
         {/* Specialized Expertise: Real Estate & RERA */}
-        <section className="mb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[40px] md:rounded-[56px] p-8 md:p-20 text-white relative overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-slate-700/50">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px] animate-blob" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] animate-blob" style={{ animationDelay: '3s' }} />
+        <section className="mb-24 bg-slate-900 rounded-[40px] md:rounded-[56px] p-8 md:p-20 text-white relative overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-slate-700/50">
           <div className="relative z-10">
             <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-[0.2em] mb-6">Specialized Expertise</h2>
             <h3 className="text-3xl md:text-5xl font-serif mb-8 leading-tight">
@@ -655,7 +637,7 @@ const Home = () => {
                 "Risk assessment and transaction structuring"
               ].map((point, i) => (
                 <div key={i} className="flex items-center space-x-4 group">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 group-hover:scale-150 transition-transform" />
+                  <div className="w-2 h-2 rounded-full bg-emerald-400" />
                   <span className="text-slate-200 font-medium">{point}</span>
                 </div>
               ))}

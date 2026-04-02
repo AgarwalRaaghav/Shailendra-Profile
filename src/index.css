@@ -38,37 +38,11 @@
     @apply py-16 md:py-24 lg:py-32 px-6;
   }
 
-  .animate-blob {
-    animation: blob 10s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
-  }
-
   .bg-grid-pattern {
     background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
-
-  .mesh-bg {
-    background-color: #ffffff;
-    background-image: radial-gradient(at 40% 20%, hsla(167,86%,85%,0.3) 0px, transparent 50%),
-                      radial-gradient(at 80% 0%, hsla(189,100%,75%,0.2) 0px, transparent 50%),
-                      radial-gradient(at 0% 50%, hsla(167,86%,85%,0.2) 0px, transparent 50%);
-  }
-
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-}
-
-@keyframes blob {
-  0% { transform: scale(1) translate(0px, 0px); }
-  33% { transform: scale(1.1) translate(20px, -30px); }
-  66% { transform: scale(0.9) translate(-20px, 20px); }
-  100% { transform: scale(1) translate(0px, 0px); }
 }
 
 @keyframes marquee {
