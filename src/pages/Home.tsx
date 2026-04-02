@@ -27,8 +27,14 @@ const textRevealVariants = {
 
 const MagneticButton = ({ children, className }: { children: React.ReactNode, className?: string }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouch) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = e.currentTarget.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
@@ -56,11 +62,17 @@ const MagneticButton = ({ children, className }: { children: React.ReactNode, cl
 const TiltPortrait = () => {
   const x = useMotionValue(200);
   const y = useMotionValue(250);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const rotateX = useTransform(y, [0, 500], [8, -8]);
   const rotateY = useTransform(x, [0, 400], [-8, 8]);
 
   function handleMouse(event: React.MouseEvent<HTMLDivElement>) {
+    if (isTouch) return;
     const rect = event.currentTarget.getBoundingClientRect();
     x.set(event.clientX - rect.left);
     y.set(event.clientY - rect.top);
@@ -75,7 +87,11 @@ const TiltPortrait = () => {
     <motion.div
       onMouseMove={handleMouse}
       onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
+      style={{ 
+        rotateX: isTouch ? 0 : rotateX, 
+        rotateY: isTouch ? 0 : rotateY, 
+        transformPerspective: 1000 
+      }}
       className="relative group mb-10 w-full max-w-sm mx-auto hidden lg:block transform-gpu"
     >
       <div className="aspect-[4/5] rounded-[48px] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] relative z-10 bg-slate-100">
@@ -89,6 +105,8 @@ const TiltPortrait = () => {
           alt="Shailendra Agarwal" 
           className="w-full h-full object-cover transition-all duration-700 hover:scale-105 pointer-events-none"
           referrerPolicy="no-referrer"
+          loading="eager"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-emerald-600/10 mix-blend-multiply group-hover:opacity-0 transition-opacity pointer-events-none z-20" />
       </div>
@@ -137,8 +155,14 @@ const KineticCounter = ({ from = 0, to, duration = 2.5 }: { from?: number, to: n
 const PracticeCard = ({ area }: { area: any, key?: React.Key }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    if (isTouch) return;
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
@@ -146,24 +170,26 @@ const PracticeCard = ({ area }: { area: any, key?: React.Key }) => {
 
   return (
     <motion.div
-      whileHover={{ y: -5 }}
+      whileHover={!isTouch ? { y: -5 } : {}}
       whileTap={{ scale: 0.95 }}
       onMouseMove={handleMouseMove}
       className="group min-w-[85vw] sm:min-w-[340px] md:min-w-0 snap-center shrink-0 p-8 rounded-[32px] bg-gradient-to-b from-white to-slate-50/50 border border-slate-100/80 shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:border-emerald-200/60 transition-all duration-500 cursor-pointer relative overflow-hidden flex flex-col"
     >
       {/* Cursor Tracking Glow Overlay */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[32px] opacity-0 transition duration-500 group-hover:opacity-100 mix-blend-multiply"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              400px circle at ${mouseX}px ${mouseY}px,
-              rgba(16, 185, 129, 0.15),
-              transparent 80%
-            )
-          `,
-        }}
-      />
+      {!isTouch && (
+        <motion.div
+          className="pointer-events-none absolute -inset-px rounded-[32px] opacity-0 transition duration-500 group-hover:opacity-100 mix-blend-multiply"
+          style={{
+            background: useMotionTemplate`
+              radial-gradient(
+                400px circle at ${mouseX}px ${mouseY}px,
+                rgba(16, 185, 129, 0.15),
+                transparent 80%
+              )
+            `,
+          }}
+        />
+      )}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
       <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.1)] group-hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] transition-shadow duration-500 border border-slate-50 shrink-0 z-10">
         <DrawIcon>{area.icon}</DrawIcon>
@@ -243,6 +269,8 @@ const Hero = () => {
                   alt="Shailendra Agarwal" 
                   className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
+                  loading="eager"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-emerald-600/10 mix-blend-multiply group-hover:opacity-0 transition-opacity pointer-events-none z-20" />
               </div>
@@ -261,6 +289,8 @@ const Hero = () => {
                       alt="Client" 
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 ))}
@@ -320,7 +350,7 @@ const Marquee = () => {
       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-emerald-600 to-transparent z-10" />
       
       <div className="flex animate-marquee hover:[animation-play-state:paused] cursor-default">
-        {[...Array(4)].map((_, i) => (
+        {[...Array(2)].map((_, i) => (
           <div key={i} className="flex items-center space-x-6 sm:space-x-12 px-3 sm:px-6 text-sm sm:text-base md:text-lg font-bold uppercase tracking-[0.25em] opacity-95">
             <span>Corporate Advisory</span>
             <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-200 rounded-full" />
@@ -418,7 +448,13 @@ const NewspaperCuttings = () => {
                 style={{ clipPath: jaggedPaths[idx % jaggedPaths.length] }}
               >
                 <div className="w-full h-40 sm:h-64 md:h-[40vh] max-h-[350px] transition-all duration-700 group-hover:scale-105 bg-white flex items-center justify-center">
-                  <img src={src} alt={`Newspaper Cutting ${idx + 1}`} className="w-full h-full object-contain" />
+                  <img 
+                    src={src} 
+                    alt={`Newspaper Cutting ${idx + 1}`} 
+                    className="w-full h-full object-contain" 
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
               
