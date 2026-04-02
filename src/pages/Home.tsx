@@ -534,13 +534,13 @@ const Home = () => {
         >
           <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
             <p>
-              CA. Shailendra Agarwal is a senior Chartered Accountant with over <span className="text-slate-900 font-bold">18 years of hands-on professional experience</span> in structuring tax-efficient business models, handling high-stakes assessments, and resolving complex tax and regulatory disputes.
+              CA. Shailendra Agarwal is a Fellow Member of the Institute of Chartered Accountants of India with over <span className="text-slate-900 font-bold">18 years of rich professional experience</span> in taxation, audit, and regulatory advisory.
             </p>
             <p>
-              He works closely with promoters, corporates, banks, MSMEs, and business families, advising them on capital protection, cash-flow optimization, and regulatory risk management.
+              He specializes in designing tax-efficient structures, managing complex income tax assessments, and handling high-stakes litigation matters before various appellate authorities. His practical, business-oriented approach enables clients to not only remain compliant but also optimize their financial and operational efficiency.
             </p>
             <p>
-              This foundation has naturally evolved into a focused practice in <span className="text-emerald-600 font-semibold">Real Estate Advisory and RERA-related services</span>, where regulatory foresight and structuring precision are critical.
+              Over the years, he has worked closely with promoters, corporates, MSMEs, banks, and business families, providing strategic advisory on capital protection, cash flow optimization, and regulatory risk management.
             </p>
           </div>
           <div className="relative bg-gradient-to-br from-slate-50 to-white p-10 md:p-12 rounded-[40px] border border-slate-100 shadow-xl shadow-slate-200/20 overflow-hidden">
@@ -632,10 +632,17 @@ const Home = () => {
             </div>
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
-                { org: "Tax Consultants Association, Jaipur", role: "President" },
-                { org: "Institute of Chartered Accountants of India – Jaipur Branch", role: "Secretary" },
-                { org: "Federation of Rajasthan Trade & Industry (Forti Youth Wing)", role: "Vice-President" },
-                { org: "AIFTP (Central Zone)", role: "Additional Joint Secretary" }
+                { org: "FORTI Youth Wing", role: "Vice President" },
+                { org: "AIFTP 2025-27", role: "Additional Joint Secretary Cz" },
+                { org: "Tax Consultant’s Association, Jaipur 2023-24", role: "President" },
+                { org: "Tax Consultants Association, Jaipur 2022-23", role: "Deputy President" },
+                { org: "Knowledge Pool Society Reg. (A Group of Professionals)", role: "Vice President" },
+                { org: "Public Relation Committee of Central India Regional Council of ICAI Year 2016-17", role: "Member" },
+                { org: "The Institute of Chartered Accountants of India Jaipur (CIRC) Year 2015-16", role: "Vice-Chairman" },
+                { org: "The Institute of Chartered Accountants of India Jaipur (CIRC) Year 2014-15", role: "Secretary" },
+                { org: "The Institute of Chartered Accountants of India Jaipur (CIRC) for the Year 2013-14", role: "Secretary" },
+                { org: "Tax Consultants Association, Jaipur 2012-13", role: "Elected Member of Executive Committee" },
+                { org: "Mansarovar CPE Study Circle of CIRC of ICAI 2012-13", role: "Dypt. Convener" }
               ].map((item, idx) => (
                 <div key={idx} className="p-6 rounded-[28px] bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-100 flex items-start space-x-4 transition-all duration-300 group cursor-default">
                   <div className="w-12 h-12 bg-emerald-50/50 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-emerald-100/50 transition-colors">
